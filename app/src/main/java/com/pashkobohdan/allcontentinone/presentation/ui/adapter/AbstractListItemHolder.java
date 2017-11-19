@@ -3,7 +3,7 @@ package com.pashkobohdan.allcontentinone.presentation.ui.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.pashkobohdan.allcontentinone.presentation.model.dto.CommonDTO;
+import com.pashkobohdan.allcontentinone.presentation.model.dto.common.CommonDTO;
 
 import rx.functions.Action1;
 

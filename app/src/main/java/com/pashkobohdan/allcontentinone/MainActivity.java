@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import com.pashkobohdan.allcontentinone.presentation.ui.fragments.AllContentsFragment;
 import com.pashkobohdan.allcontentinone.presentation.ui.utils.CustomFragmentNavigator;
 
 import javax.inject.Inject;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         protected Fragment createFragment(String screenKey, Object data) {
             switch (screenKey) {
                 case ALL_CONTENT_LIST:
-//                    return BookListFragment.getNewInstance();
+                    return AllContentsFragment.getNewInstance();
                 case FAVORITE_CONTENT_LIST:
                     //TODO
                 default:
