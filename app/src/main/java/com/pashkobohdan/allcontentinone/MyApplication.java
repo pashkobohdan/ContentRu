@@ -2,26 +2,36 @@ package com.pashkobohdan.allcontentinone;
 
 import android.app.Application;
 
-import ru.terrakok.cicerone.Cicerone;
-import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.Router;
+import com.pashkobohdan.allcontentinone.di.ApplicationComponent;
+import com.pashkobohdan.allcontentinone.di.DaggerApplicationComponent;
+import com.pashkobohdan.allcontentinone.di.modules.ApplicationModule;
 
 public class MyApplication extends Application {
+    private ApplicationComponent component;
     public static MyApplication INSTANCE;
-    private Cicerone<Router> cicerone;
+
 
     @Override
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
-        cicerone = Cicerone.create();
+        //TODO maybe run first getApplicationComponent() here
     }
 
-    public NavigatorHolder getNavigatorHolder() {
-        return cicerone.getNavigatorHolder();
+    @Override
+    public void onTerminate() {
+//        OpenHelperManager.releaseHelper();// instead of releaseHelper // TODO check for what it was here
+        super.onTerminate();
     }
 
-    public Router getRouter() {
-        return cicerone.getRouter();
+    public ApplicationComponent getApplicationComponent() {
+        if (component == null) {
+            component = DaggerApplicationComponent
+                    .builder()
+                    .applicationModule(new ApplicationModule(this))
+//                    .databaseModule(new DatabaseModule(this))
+                    .build();
+        }
+        return component;
     }
 }
